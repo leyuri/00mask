@@ -95,5 +95,9 @@ react-router-dom의 hooks 참고! useLocation, 초기값은 함수로 넣어주�
 useState에는 intinalState가 들어가는데 intinalState가 함수면 
 이 함수가 제일 처음 콜할때 한번만 콜하고 기억이 된다?....
 
+- <a href=Convert JSON to JavaScript object>Convert JSON to JavaScript object</a>
+
+json 파일을 js object로 바꿔줌
+
 
 ##### error

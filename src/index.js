@@ -51,4 +51,5 @@ serviceWorker.unregister();
 
 /*
 ThemeProvider 내부에 있는 모든 컴포넌트들에 전해주는!
+index.js는 전체 store나 인젝션 부분만 담당
 */

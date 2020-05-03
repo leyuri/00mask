@@ -1,6 +1,11 @@
 import produce from "immer"
 
-const baseState = {};
+const baseState = {
+
+    loading: false,
+    error:""
+};
+
 
 const reducer = produce((state, action) => {
 }, baseState);

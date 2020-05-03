@@ -11,6 +11,8 @@ import { Link, useLocation } from 'react-router-dom';
 const useStyles = makeStyles({
   root: {
     background: "#eee",
+    position: "fixed",
+    bottom: 0,
     width: "100%",
     "& .MuiBottomNavigationAction-root": {
         minWidth: 0

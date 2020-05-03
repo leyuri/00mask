@@ -24,7 +24,7 @@ const store = createStore(
 
 const theme = createMuiTheme({
   palette: {
-    type: 'dark',
+    type: 'light',
   },
 });
 

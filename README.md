@@ -30,6 +30,7 @@
    reducer, /* preloadedState, */
 +  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
  );
+```
 
 
 미들웨어랑 같이 쓸 경우는?
@@ -71,6 +72,28 @@ const useStyles = makeStyles({
 
 });
 ```
+
+- useState
+
+
+```
+  const [value, setValue] = React.useState(() =>{
+
+      const path = location.pathname;
+      //pathname은 URL의 경로 이름을 설정하거나 반환합니다.
+      if (path === "/list") return 1;
+      if (path === "/help") return 2;
+      if (path === "/about") return 3;
+      return 0; 
+  });
+```
+
+
+현재 누가 선택되어있는지는 valueState를 통제하고 있다. hooks을 이용해서 훅을 쓰고 있다. 초기값이 0이라서 무조건 0번째가 선택되어서 링크페이지가 바뀌어도 map에 고정되어 있다. 여기의 초기값은 path를 선택해줘야 하는데...
+react-router-dom의 hooks 참고! useLocation, 초기값은 함수로 넣어주는 것이 좋다. 초기값이 함수로 되어있지 않으면 앱을 랜더링 할 때마다 실행을 해야 한다. 그만큼 안좋은 점이 생김..
+
+useState에는 intinalState가 들어가는데 intinalState가 함수면 
+이 함수가 제일 처음 콜할때 한번만 콜하고 기억이 된다?....
 
 
 ##### error

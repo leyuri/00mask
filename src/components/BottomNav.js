@@ -6,7 +6,7 @@ import RoomIcon from '@material-ui/icons/Room';
 import ListIcon from '@material-ui/icons/List';
 import HelpIcon from '@material-ui/icons/Help';
 import InfoIcon from '@material-ui/icons/Info';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const useStyles = makeStyles({
   root: {
@@ -20,10 +20,18 @@ const useStyles = makeStyles({
 });
 
 export default function SimpleBottomNavigation() {
-  const classes = useStyles();
-  const [value, setValue] = React.useState(0);
-// 현재 누가 선택되어있는지는 valueState를 통해 하는 것 같다
 
+  const classes = useStyles();
+  const location = useLocation();
+  const [value, setValue] = React.useState(() =>{
+
+      const path = location.pathname;
+      //pathname은 URL의 경로 이름을 설정하거나 반환합니다.
+      if (path === "/list") return 1;
+      if (path === "/help") return 2;
+      if (path === "/about") return 3;
+      return 0; 
+  });
   return (
     <BottomNavigation
       value={value}

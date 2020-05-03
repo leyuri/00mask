@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from "../components/AppBar";
 import BottomNav from "../components/BottomNav";
-import StoreHelper from "../util/StroeHelper";
+import StoreHelper from "../util/StoreHelper";
 
 
 import List from '@material-ui/core/List';
@@ -14,6 +14,7 @@ import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from '@material-ui/core/Avatar';
 import ImageIcon from '@material-ui/icons/Image';
 import { Typography } from '@material-ui/core';
+import StoreIcon from '@material-ui/icons/Store';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -30,21 +31,21 @@ const useStyles = makeStyles((theme) => ({
 
 // props으로 받는 것임
 const StoreItem = ({store}) => {
-    const { addr, name, remain_stat, stock_at } = store;
+    const { addr, name, stock_at } = store;
     const { color, desc, short } = StoreHelper(store);
     // 이것들을 store에서 뽑으면 됨
     return (
     <ListItem>
         <ListItemAvatar>
-          <Avatar>
-            <ImageIcon style={{color}}/>
-          </Avatar>
+          {/* <Avatar> */}
+            <StoreIcon style={{color}}/>
+          {/* </Avatar> */}
         </ListItemAvatar>
         <ListItemText 
         primary={
             <React.Fragment>
                 <span style={{color}}>
-                    {name}
+                    <b>{name}</b> ({desc})
                 </span>
             </React.Fragment>
         } 
@@ -52,6 +53,9 @@ const StoreItem = ({store}) => {
             <React.Fragment>
             <span>
                 {addr}
+            </span><br/>
+            <span style={{color: "#ccc"}}>
+                입고날짜: {stock_at}
             </span>
             </React.Fragment>   
         } />

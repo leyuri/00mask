@@ -11,6 +11,14 @@
 - Redux Logger
 - React Router
 
+---
+
+##### todo
+
+- Reducer / Redux / React-Redux / Redux-thunk / Redux-logger  store를 provider에
+- React-Router 통해 Page Switch
+- AppBar, BottomNavigation
+
 
 ##### Tip
 
@@ -45,11 +53,6 @@ reducers/index.js의 baseState에 값을 넣어보고
 redux-dev-tool chrome 에서 확인한 결과 !
 
 <img width="415" alt="Screen Shot 2020-05-03 at 12 14 54 PM" src="https://user-images.githubusercontent.com/33794732/80897810-d08f6e80-8d37-11ea-9987-fab60377eb32.png">
-
-
-
-
-
 
 
 ##### error

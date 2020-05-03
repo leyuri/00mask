@@ -7,7 +7,7 @@ const MapPage = () => {
     return (
         <div>
             <AppBar/>
-            helloooooooo
+            MapPage
             <BottomNav/>
         </div>
     )

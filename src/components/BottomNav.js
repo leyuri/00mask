@@ -6,6 +6,7 @@ import RoomIcon from '@material-ui/icons/Room';
 import ListIcon from '@material-ui/icons/List';
 import HelpIcon from '@material-ui/icons/Help';
 import InfoIcon from '@material-ui/icons/Info';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles({
   root: {
@@ -28,10 +29,30 @@ export default function SimpleBottomNavigation() {
       showLabels
       className={classes.root}
     >
-      <BottomNavigationAction label="Map" icon={<RoomIcon />} />
-      <BottomNavigationAction label="List" icon={<ListIcon />} />
-      <BottomNavigationAction label="Help" icon={<HelpIcon />} />
-      <BottomNavigationAction label="About" icon={<InfoIcon />} />
+    <BottomNavigationAction 
+        label="Map" 
+        icon={<RoomIcon />} 
+        component={Link}
+        to="/"
+    />
+    <BottomNavigationAction 
+        label="List" 
+        icon={<ListIcon />} 
+        component={Link}
+        to="/list"
+    />
+    <BottomNavigationAction 
+        label="Help" 
+        icon={<HelpIcon />} 
+        component={Link}
+        to="/help"
+    />
+    <BottomNavigationAction 
+        label="About" 
+        icon={<InfoIcon />} 
+        component={Link}
+        to="/about"
+    />
     </BottomNavigation>
   );
 }

@@ -12,7 +12,11 @@ const useStyles = makeStyles({
   root: {
     background: "#eee",
     width: "100%",
+    "& .MuiBottomNavigationAction-root": {
+        minWidth: 0
+    }
   },
+
 });
 
 export default function SimpleBottomNavigation() {

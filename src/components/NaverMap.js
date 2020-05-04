@@ -23,6 +23,15 @@ class NaverMap extends React.Component {
     accessible at the current attribute of the ref.
     
     */
+
+      
+    showMarker(map) {
+
+        var marker = new naver.maps.Marker({
+            position: new naver.maps.LatLng(37.3595704, 127.105399),
+            map: map
+        });
+    }
     componentDidMount() {
         const { mapCenter, mapZoom, dispatch} = this.props;
         const node = this.mapRef.current;
@@ -49,6 +58,8 @@ class NaverMap extends React.Component {
         naver.maps.Event.addListener(this.map, 'zoom_changed', zoom => {
             dispatch(setMapZoom(zoom));
         });
+
+        this.showMarker(this.map);
         console.log("MAP INITIALIZED~~~~~~~")
     }
 

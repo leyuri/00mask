@@ -24,7 +24,7 @@
 - Map Page
 - NaverMap -> Component
 - Map - Redux 연결
-
+- Map에 Marker 추가 (<a href="https://www.iconfinder.com/iconsets/map-location-solid-style">iconfinder이용</a>)
 <br/>
 
 ##### Tip

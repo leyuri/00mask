@@ -4,7 +4,7 @@ const baseState = {
 
     loading: false,
     error:"",
-    center: [37.3595704, 128.105399],
+    center: [37.3595704, 127.105399],
     stores: 
     [
         {

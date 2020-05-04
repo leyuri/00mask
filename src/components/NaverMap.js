@@ -28,8 +28,13 @@ class NaverMap extends React.Component {
             center: new naver.maps.LatLng(...this.props.center),
             // redux를 통해 해보자..! -> mapStateToProps 이용
             // center: new naver.maps.LatLng(this.props.center) 이런 식(배열)으로 넣으면 안된다. 쪼개서 넣어야 한다. 
-            zoom: 15
+            zoom: 14,
+            scaleControl: true,
+            mapTypeControl: true,
+            zoomControl: true
         };
+        // map page 에 있다가 list 이동 -> 다시 map으로 이동하면 원래 줌 크기로 돌아온다. 왜?
+        // unMount 되었다가 다시 render가 되서 mount된 것임..
         
         this.map = new naver.maps.Map(node, mapOptions);
         

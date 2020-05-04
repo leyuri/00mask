@@ -1,18 +1,14 @@
 /* global naver */
 
 import React from  "react";
-import { makeStyles } from '@material-ui/core/styles';
+import { styled } from '@material-ui/core/styles';
 
-const useStyles = makeStyles((theme) => ({
-    root: {
-      width: "100%",
-      height: "100%",
-    },
-}));
-
+const MapDiv = styled('div')({
+    width: "100%",
+    height: "100vh",
+  });
 
 class NaverMap extends React.Component {
-    
     constructor(props) {
         super(props);
         this.mapRef = React.createRef();
@@ -23,10 +19,9 @@ class NaverMap extends React.Component {
     When a ref is passed to an element in render, a reference to the node becomes 
     accessible at the current attribute of the ref.
     
-    
     */
     componentDidMount() {
-        const node = this.myRef.current;
+        const node = this.mapRef.current;
         var mapOptions = {
             center: new naver.maps.LatLng(37.3595704, 127.105399),
             zoom: 10
@@ -37,9 +32,8 @@ class NaverMap extends React.Component {
     }
 
     render() {
-        const classes = useStyles();
         return (
-            <div className={classes.root} ref={this.mapRef}></div>
+            <MapDiv ref={this.mapRef}/>
             /* 이렇게 id를 주면 컴포넌트들로서의 역할을 할 수 없다. 
             리액트의 refs를 사용하는 방식으로!
             */

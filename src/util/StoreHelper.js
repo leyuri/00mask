@@ -39,6 +39,7 @@ const SHORT = ["-", "0-1", "2+", "30+", "100+", "X"];
 export default function(store){
     const idx = stat2idx(store.remain_stat);
     return {
+        idx: idx,
         color: COLOR[idx],
         desc: DESC[idx],
         short: SHORT[idx],

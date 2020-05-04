@@ -47,7 +47,7 @@ class NaverMap extends React.Component {
                 map: this.map,
                 icon: {
                     // 
-                    url: icons[StoreHelper.stat2idx(store.remain_stat)],
+                    url: icons[StoreHelper(store).idx],
                     //  StoreHelper 에서.. stat2idx에서 넘어오니까! 가져오고 그것을 remain_stat에 넣어줌
                     size: new naver.maps.Size(64, 64),
                     origin: new naver.maps.Point(0, 0),

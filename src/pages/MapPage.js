@@ -7,9 +7,10 @@ import { makeStyles } from '@material-ui/core/styles';
 
 /* 왜 이렇게?..가로 세로 크기 주려고 */
 const useStyles = makeStyles((theme) => ({
-    root: {
+    mapWrapper: {
       width: "100%",
-      height: "100%"
+      marginBottom: theme.spacing(7),
+      height: `calc(100vh - ${ 2 * theme.spacing(7)}px)`
     },
 }));
 
@@ -19,7 +20,9 @@ const MapPage = () => {
     return (
         <div>
             <AppBar/>
-                <NaverMap className={classes.root}/>
+                <div className={classes.mapWrapperot}>
+                    <NaverMap/>
+                </div>
             <BottomNav/>
         </div>
     )

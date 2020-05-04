@@ -6,7 +6,8 @@ import { styled } from '@material-ui/core/styles';
 const MapDiv = styled('div')({
     width: "100%",
     height: "100vh",
-  });
+    
+});
 
 class NaverMap extends React.Component {
     constructor(props) {
@@ -24,7 +25,7 @@ class NaverMap extends React.Component {
         const node = this.mapRef.current;
         var mapOptions = {
             center: new naver.maps.LatLng(37.3595704, 127.105399),
-            zoom: 10
+            zoom: 15
         };
         
         this.map = new naver.maps.Map(node, mapOptions);

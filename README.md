@@ -161,4 +161,28 @@ n; // { x: 1, y: 2, a: 3, b: 4 }
 
 하지만 아직 state는 바뀌지 않음 reducer에서 처리를 안해줬기 때문에ㅠㅜ
 
+- 큰 문제가?...
+
+```
+const reducer = produce((state, action) => {
+    switch(action.type) {
+        case "SET_MAP_ZOOM":
+            state.mapZoom = action.payload;
+            break;
+        case "SET_MAP_CENTER":
+            state.mapCenter = action.payload;
+            break;
+        // 전체 global state를 바꿔준 것..!
+        default:
+            break;
+    }
+}, baseState);
+```
+왜 생길 수 있냐면...
+
+<img width="578" alt="Screen Shot 2020-05-04 at 11 24 07 PM" src="https://user-images.githubusercontent.com/33794732/80976530-87860a00-8e5e-11ea-9ca5-75bb901a1550.png">
+
+이렇게 랜더가 두번 먼저 불리면 상관이 없다. 
+처음 랜더가 되었을 때는 마운트 되기 전, 리덕스 값이. 바뀌지 않음, 따라서 랜더 후 Map이 initialized 되는 것은 좋음..근데 지금 상태에서 드래그 해서 옮기면 계속 랜더가 발생한다.
+Map이 initialized되면 문제가 생김 ㅜ -> 페이지 바꿀 때마다 initialized 됨
 ##### error

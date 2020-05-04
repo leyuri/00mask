@@ -61,7 +61,7 @@ redux-dev-tool chrome 에서 확인
 
 <img width="415" alt="Screen Shot 2020-05-03 at 12 14 54 PM" src="https://user-images.githubusercontent.com/33794732/80897810-d08f6e80-8d37-11ea-9987-fab60377eb32.png">
 
-<br></br>
+<br/>
 
 - css 적용
 
@@ -79,7 +79,7 @@ const useStyles = makeStyles({
 
 });
 ```
-<br></br>
+<br/>
 
 - useState
 
@@ -103,13 +103,13 @@ react-router-dom의 hooks 참고! useLocation, 초기값은 함수로 넣어주�
 useState에는 intinalState가 들어가는데 intinalState가 함수면 
 이 함수가 제일 처음 콜할때 한번만 콜하고 기억이 된다?....
 
-<br></br>
+<br/>
 
 - <a href=Convert JSON to JavaScript object>Convert JSON to JavaScript object</a>
 
 json 파일을 js object로 바꿔줌
 
-<br></br>
+<br/>
 
 - 밖에서 들어왔으므로 더 이상 에러라고 표시해주지 마세요...!
 
@@ -117,7 +117,7 @@ json 파일을 js object로 바꿔줌
 /* global naver */
 ```
 
-<br></br>
+<br/>
 
 - css 내에서 직접 계산을 할 수 있도록 해주는?!
 
@@ -132,5 +132,22 @@ const useStyles = makeStyles((theme) => ({
 ```
 
 기계 화면마다 사이즈가 달라지기 때문에 조절을 해줘야 한다ㅜㅜ
+
+- What is ... ?
+
+The ... can also be used to spread objects and not just arrays
+
+```
+// Using rest syntax here
+let { x, y, ...z } = { x: 1, y: 2, a: 3, b: 4 }; 
+x; // 1
+y; // 2
+z; // { a: 3, b: 4 }
+
+// Using spread here
+let n = { x, y, ...z };
+n; // { x: 1, y: 2, a: 3, b: 4 }
+```
+<a href="https://stackoverflow.com/questions/54963457/react-js-spread-syntax"></a>
 
 ##### error

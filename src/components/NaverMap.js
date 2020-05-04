@@ -4,11 +4,19 @@ import React from  "react";
 import { styled } from '@material-ui/core/styles';
 import { connect } from 'react-redux'
 import { setMapZoom, setMapCenter} from "../actions/index";
+import StoreHelper from "../util/StoreHelper";
+
+
+import pinGreen from "../green.png";
+import pinRed from "../red.png";
+import pinYellow from "../yellow.png";
+import pinBlack from "../black.png";
+import pinGrey from "../grey.png";
+
 
 const MapDiv = styled('div')({
     width: "100%",
     height: "100vh",
-    
 });
 
 class NaverMap extends React.Component {
@@ -21,17 +29,42 @@ class NaverMap extends React.Component {
     Accessing Refs
     When a ref is passed to an element in render, a reference to the node becomes 
     accessible at the current attribute of the ref.
-    
     */
 
-      
-    showMarker(map) {
+    loadPins() {
+        const icons = [
+            pinBlack, pinGrey, pinRed, pinYellow, pinGreen, pinBlack
+        ];
+        // 더 간결한 코드를 위해...
 
-        var marker = new naver.maps.Marker({
-            position: new naver.maps.LatLng(37.3595704, 127.105399),
-            map: map
-        });
+        this.props.stores.forEach(store => {
+          
+            new naver.maps.Marker({
+                  // 아까 해놓은 showMarker conde insert
+                position: new naver.maps.LatLng(store.lat, store.lng),
+                    // reducer 에서 살표보자..lat, lng 있네.? 가져옴
+                
+                map: this.map,
+                icon: {
+                    // 
+                    url: icons[StoreHelper.stat2idx(store.remain_stat)],
+                    //  StoreHelper 에서.. stat2idx에서 넘어오니까! 가져오고 그것을 remain_stat에 넣어줌
+                    size: new naver.maps.Size(64, 64),
+                    origin: new naver.maps.Point(0, 0),
+                    anchor: new naver.maps.Point(11, 35)
+                }
+            });
+        })
+
     }
+
+    // showStores(map) {
+    // // stores의 lat & lng 마커로 다 찍어보자
+    //     var marker = new naver.maps.Marker({
+    //         position: new naver.maps.LatLng(37.3595704, 127.105399),
+    //         map: map
+    //     });
+    // }
     componentDidMount() {
         const { mapCenter, mapZoom, dispatch} = this.props;
         const node = this.mapRef.current;
@@ -59,7 +92,7 @@ class NaverMap extends React.Component {
             dispatch(setMapZoom(zoom));
         });
 
-        this.showMarker(this.map);
+        this.loadPins();
         console.log("MAP INITIALIZED~~~~~~~")
     }
 
@@ -78,15 +111,16 @@ class NaverMap extends React.Component {
 }
 
 function mapStateToProps(state) {
-    const { mapCenter, mapZoom } = state
+    const { mapCenter, mapZoom, stores } = state
     // center라는 변수에다가 state.center을 집어넣으라는 의미
     // state 중에서 center을 받아올 것
-    return { mapCenter, mapZoom }
+    return { mapCenter, mapZoom, stores }
     // 이것을 다시 center에다가 넣어주면?
     // center(key) : center(const { center } = state의 value)
     // return { center : center} = return { center }
 
     // mapZoom 추가..줌된 모습을 기억하기 위해서ㅜ
+    // stores추가..여기 있는 데이터도 가져오기 위해서ㅜㅜ
   }
   
 export default connect(mapStateToProps)(NaverMap)

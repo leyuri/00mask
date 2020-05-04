@@ -10,6 +10,8 @@
 - Redux Dev Tool
 - Redux Logger
 - React Router
+- <a href="https://www.data.go.kr/data/15058203/openapi.do">공적 마스크 재고API</a>
+- <a href="https://www.ncloud.com/product/applicationService/maps">NaverMapAPI</a>
 
 ---
 
@@ -18,6 +20,10 @@
 - Reducer / Redux / React-Redux / Redux-thunk / Redux-logger  store를 provider에
 - React-Router 통해 Page Switch
 - AppBar, BottomNavigation
+- ListUI
+- Map Page
+- NaverMap -> Component
+- Map - Redux 연결
 
 
 ##### Tip
@@ -99,5 +105,10 @@ useState에는 intinalState가 들어가는데 intinalState가 함수면
 
 json 파일을 js object로 바꿔줌
 
+- 밖에서 들어왔으므로 더 이상 에러라고 표시해주지 마세요...!
+
+```
+/* global naver */
+```
 
 ##### error

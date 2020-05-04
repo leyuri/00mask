@@ -11,9 +11,6 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
-import Avatar from '@material-ui/core/Avatar';
-import ImageIcon from '@material-ui/icons/Image';
-import { Typography } from '@material-ui/core';
 import StoreIcon from '@material-ui/icons/Store';
 
 const useStyles = makeStyles((theme) => ({
@@ -32,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
 // props으로 받는 것임
 const StoreItem = ({store}) => {
     const { addr, name, stock_at } = store;
-    const { color, desc, short } = StoreHelper(store);
+    const { color, desc } = StoreHelper(store);
     // 이것들을 store에서 뽑으면 됨
     return (
     <ListItem>

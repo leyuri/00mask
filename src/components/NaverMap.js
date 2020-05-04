@@ -25,10 +25,10 @@ class NaverMap extends React.Component {
     componentDidMount() {
         const node = this.mapRef.current;
         var mapOptions = {
-            center: new naver.maps.LatLng(...this.props.center),
+            center: new naver.maps.LatLng(...this.props.mapCenter),
             // redux를 통해 해보자..! -> mapStateToProps 이용
             // center: new naver.maps.LatLng(this.props.center) 이런 식(배열)으로 넣으면 안된다. 쪼개서 넣어야 한다. 
-            zoom: 14,
+            zoom: this.props.mapZoom,
             scaleControl: true,
             mapTypeControl: true,
             zoomControl: true
@@ -37,8 +37,15 @@ class NaverMap extends React.Component {
         // unMount 되었다가 다시 render가 되서 mount된 것임..
         
         this.map = new naver.maps.Map(node, mapOptions);
-        
+
+        naver.maps.Event.addListener(this.map, 'dragend', e => {
+            console.log(e);
+        });
+        naver.maps.Event.addListener(this.map, 'zoom_changed', e => {
+            console.log(e);
+        });
     }
+
 
     render() {
         return (
@@ -53,13 +60,15 @@ class NaverMap extends React.Component {
 }
 
 function mapStateToProps(state) {
-    const { center } = state
+    const { mapCenter, mapZoom } = state
     // center라는 변수에다가 state.center을 집어넣으라는 의미
     // state 중에서 center을 받아올 것
-    return { center : center}
+    return { mapCenter, mapZoom }
     // 이것을 다시 center에다가 넣어주면?
     // center(key) : center(const { center } = state의 value)
     // return { center : center} = return { center }
+
+    // mapZoom 추가..줌된 모습을 기억하기 위해서ㅜ
   }
   
 export default connect(mapStateToProps)(NaverMap)

@@ -153,4 +153,12 @@ n; // { x: 1, y: 2, a: 3, b: 4 }
 ```
 <a href="https://stackoverflow.com/questions/54963457/react-js-spread-syntax">출처</a>
 
+<br/>
+
+- action을 추가,,이렇게 보이는 이유는 리덕스 로그를 받아놨기 때문..!
+
+<img width="589" alt="Screen Shot 2020-05-04 at 11 11 36 PM" src="https://user-images.githubusercontent.com/33794732/80975142-ad121400-8e5c-11ea-925f-e6ad61bf397d.png">
+
+하지만 아직 state는 바뀌지 않음 reducer에서 처리를 안해줬기 때문에ㅠㅜ
+
 ##### error

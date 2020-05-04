@@ -3,6 +3,7 @@
 import React from  "react";
 import { styled } from '@material-ui/core/styles';
 import { connect } from 'react-redux'
+import { setMapZoom, setMapCenter} from "../actions/index";
 
 const MapDiv = styled('div')({
     width: "100%",
@@ -23,9 +24,10 @@ class NaverMap extends React.Component {
     
     */
     componentDidMount() {
+        const { mapCenter, mapZoom, dispatch} = this.props;
         const node = this.mapRef.current;
         var mapOptions = {
-            center: new naver.maps.LatLng(...this.props.mapCenter),
+            center: new naver.maps.LatLng(...mapCenter),
             // redux를 통해 해보자..! -> mapStateToProps 이용
             // center: new naver.maps.LatLng(this.props.center) 이런 식(배열)으로 넣으면 안된다. 쪼개서 넣어야 한다. 
             zoom: this.props.mapZoom,
@@ -38,11 +40,14 @@ class NaverMap extends React.Component {
         
         this.map = new naver.maps.Map(node, mapOptions);
 
-        naver.maps.Event.addListener(this.map, 'dragend', e => {
-            console.log(e);
+        naver.maps.Event.addListener(this.map, 'dragend', () => {
+            const coord = this.map.getCenter();
+            dispatch(setMapCenter([coord.lat(), coord.lng()]));
+            // 이것을 어디로 보내야 할까?...mapCenter을 하도록 바꿔줘야 함 -> action을 만들자 ㅜ
         });
-        naver.maps.Event.addListener(this.map, 'zoom_changed', e => {
-            console.log(e);
+
+        naver.maps.Event.addListener(this.map, 'zoom_changed', zoom => {
+            dispatch(setMapZoom(zoom));
         });
     }
 

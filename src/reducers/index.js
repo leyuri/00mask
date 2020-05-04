@@ -310,8 +310,18 @@ const baseState = {
 
 // redux에서 데이터가 들어왔으니까 리스트 페이지에서 리스트를 만들 데이터가 생김
 
-
 const reducer = produce((state, action) => {
+    switch(action.type) {
+        case "SET_MAP_ZOOM":
+            state.mapZoom = action.payload;
+            break;
+        case "SET_MAP_CENTER":
+            state.mapCenter = action.payload;
+            break;
+        // 전체 global state를 바꿔준 것..!
+        default:
+            break;
+    }
 }, baseState);
 
 export default reducer;

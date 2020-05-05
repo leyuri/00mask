@@ -1,6 +1,8 @@
 /* global naver */
 
 import React from  "react";
+import _ from "lodash";
+
 import { styled } from '@material-ui/core/styles';
 import { connect } from 'react-redux'
 import { setMapZoom, setMapCenter} from "../actions/index";
@@ -43,7 +45,10 @@ class NaverMap extends React.Component {
         // 현재 map의 bound를 찾고
         // hasLatLng(latlng) 객체의 좌표 경계 내에 지정한 좌표가 있는지 여부를 확인
         // 일단 getBounds를 받으면
-        this.props.stores.forEach(store => {
+        _.each(this.props.stores, store => {
+            // this.props.stores.forEach(store => {
+            // storer가 더이상 배열이 아니기 때문에 forEach 이 부분을 고쳐야 한다. 
+            // object에 대해서도 순회할 수 있는 방법이 있는데 그건 loadash를 쓰는게 좋다. 
             if (this.markers[store.code]) {
                 // code에 해당하는 마커가 있으면 더 할 필요가 없으ㅁ,,빠져나가면 됨 
                 return;

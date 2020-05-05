@@ -44,7 +44,11 @@ class NaverMap extends React.Component {
         // hasLatLng(latlng) 객체의 좌표 경계 내에 지정한 좌표가 있는지 여부를 확인
         // 일단 getBounds를 받으면
         this.props.stores.forEach(store => {
-           if (bounds.hasLatLng({ lat: store.lat, lng: store.lng})){
+            if (this.markers[store.code]) {
+                // code에 해당하는 마커가 있으면 더 할 필요가 없으ㅁ,,빠져나가면 됨 
+                return;
+            }
+            if (bounds.hasLatLng({ lat: store.lat, lng: store.lng})){
             // bounds가 이 좌표가 안에 있을 때만 찍어라!
                 const marker = new naver.maps.Marker({
                     // 아까 해놓은 showMarker conde insert
@@ -100,6 +104,8 @@ class NaverMap extends React.Component {
             const coord = this.map.getCenter();
             dispatch(setMapCenter([coord.lat(), coord.lng()]));
             // 이것을 어디로 보내야 할까?...mapCenter을 하도록 바꿔줘야 함 -> action을 만들자 ㅜ
+            this.loadPins();
+            // dragend가 되었을 때 다시 loadPins 해줘야 할 필요가 있다. 그 안에 핀들을 다시 불러내주도록!
         });
 
         naver.maps.Event.addListener(this.map, 'zoom_changed', zoom => {

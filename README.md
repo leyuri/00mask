@@ -204,4 +204,23 @@ hasLatLng(latlng)
 위와 같이 다른 곳에 위치한 곳의 마커는 나타나지 않음!
 근데 단점 존재 ㅠ 다른 곳에 위치한 곳의 스토어를 가지고 있음에도 불구하고 나오지 않는 것..
 
+```
+naver.maps.Event.addListener(this.map, 'dragend', () => {
+    const coord = this.map.getCenter();
+    dispatch(setMapCenter([coord.lat(), coord.lng()]));
+    this.loadPins();
+    // dragend가 되었을 때 다시 loadPins 해줘야 할 필요가 있다. 그 안에 핀들을 다시 불러내주도록!
+});
+```
+this.loadPins(); 추가하기
+근데 여전히 문제 존재, 이미 있는 marker를 또 만들고 있을 것이다. 
+
+```
+if (this.markers[store.code]) {
+    // code에 해당하는 마커가 있으면 더 할 필요가 없으ㅁ,,빠져나가면 됨 
+    return;
+}
+```
+이 부분을 추가해주면서 해결
+
 ##### error

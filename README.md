@@ -161,6 +161,8 @@ n; // { x: 1, y: 2, a: 3, b: 4 }
 
 하지만 아직 state는 바뀌지 않음 reducer에서 처리를 안해줬기 때문에ㅠㅜ
 
+<br/>
+
 - 큰 문제가?...
 
 ```
@@ -185,4 +187,21 @@ const reducer = produce((state, action) => {
 이렇게 랜더가 두번 먼저 불리면 상관이 없다. 
 처음 랜더가 되었을 때는 마운트 되기 전, 리덕스 값이. 바뀌지 않음, 따라서 랜더 후 Map이 initialized 되는 것은 좋음..근데 지금 상태에서 드래그 해서 옮기면 계속 랜더가 발생한다.
 Map이 initialized되면 문제가 생김 ㅜ -> 페이지 바꿀 때마다 initialized 됨
+
+<br/>
+
+- 지금은..
+지금은 pin을 stores의 100만개를 받아왔으면 백만개를 마커로 찍고 있다. 근데 그럴 필요 없음..ㅜㅜ
+바운드 안에 (=맵 화면) 있는 것들만 찍는 게 좋다 -> getBounds,,,,,,
+```
+hasLatLng(latlng)
+```
+객체의 좌표 경계 내에 지정한 좌표가 있는지 여부를 확인!
+
+<img width="363" alt="Screen Shot 2020-05-05 at 9 18 37 AM" src="https://user-images.githubusercontent.com/33794732/81025401-79150e00-8eb1-11ea-9a62-3007c8186304.png">
+
+<img width="371" alt="Screen Shot 2020-05-05 at 9 18 47 AM" src="https://user-images.githubusercontent.com/33794732/81025407-7e725880-8eb1-11ea-8011-31cd8f2225a7.png">
+위와 같이 다른 곳에 위치한 곳의 마커는 나타나지 않음!
+근데 단점 존재 ㅠ 다른 곳에 위치한 곳의 스토어를 가지고 있음에도 불구하고 나오지 않는 것..
+
 ##### error

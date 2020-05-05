@@ -23,6 +23,8 @@ class NaverMap extends React.Component {
     constructor(props) {
         super(props);
         this.mapRef = React.createRef();
+        this.markers = {};
+        // marker를 key-value 형태로 넣어놓는다.
       }
 
     /*
@@ -37,10 +39,15 @@ class NaverMap extends React.Component {
         ];
         // 더 간결한 코드를 위해...
 
+        var bounds = this.map.getBounds();
+        // 현재 map의 bound를 찾고
+        // hasLatLng(latlng) 객체의 좌표 경계 내에 지정한 좌표가 있는지 여부를 확인
+        // 일단 getBounds를 받으면
         this.props.stores.forEach(store => {
-          
-            new naver.maps.Marker({
-                  // 아까 해놓은 showMarker conde insert
+           if (bounds.hasLatLng({ lat: store.lat, lng: store.lng})){
+            // bounds가 이 좌표가 안에 있을 때만 찍어라!
+                const marker = new naver.maps.Marker({
+                    // 아까 해놓은 showMarker conde insert
                 position: new naver.maps.LatLng(store.lat, store.lng),
                     // reducer 에서 살표보자..lat, lng 있네.? 가져옴
                 
@@ -54,6 +61,13 @@ class NaverMap extends React.Component {
                     anchor: new naver.maps.Point(11, 35)
                 }
             });
+            // 이렇게 만들어진 마커를 가지고 있어야 한다? ->
+            this.markers[store.code] = marker;
+            // store의 code가 marker 역할을 하므로 넣어놓는 것이다. 
+           } else {
+            // 좌표가 없으면 지우면 된다. 
+           }
+
         })
 
     }

@@ -29,6 +29,7 @@
 - 재고 list 정렬
 - 상점 상세 페이지
 - 맵 마커에서 상세 페이지 연결
+- responsive하게 상단 padding 크기가 변경되는데, 마진 조정ㅎㅏ기..ㅜ
 
 ##### Tip
 
@@ -246,5 +247,8 @@ if (this.markers[store.code]) {
 - 새로 패치를 해와야 할 필요가 있는데 패치가 안된거고 stores나 그런 것들이 바뀌었을 때 그거에 대해서 반응을 안하고 있다. 렌더에게다 이것을 넣기 보다는...
 
 - 현재의 center에서 새로 데이터를 가져오는 것을 만들자
+
+- 패치를 안했기 때문에 stores에 아무것도 없음
+<img width="1157" alt="Screen Shot 2020-05-06 at 1 52 56 PM" src="https://user-images.githubusercontent.com/33794732/81139522-fff4e400-8fa0-11ea-8047-307130ae8ff2.png">
 
 ##### error

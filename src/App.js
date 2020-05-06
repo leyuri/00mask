@@ -11,9 +11,10 @@ import AboutPage from "./pages/AboutPage";
 import HelpPage from "./pages/HelpPage";
 import ListPage from "./pages/ListPage";
 import MapPage from "./pages/MapPage";
+import StorePage from "./pages/StorePage";
 
 
-// 여기서만 적용될 수 있도록 스타일을 설정해준다. 
+// 여기서만 적용될 수 있도록 스타일을 설 정해준다. 
 const useStyles = makeStyles((theme) => ({
   // theme라는게 넘어오면 테마에 기본적인 space들이 정해져 있다. 
   app: {
@@ -35,6 +36,9 @@ function App() {
             </Route>
             <Route path="/help">
               <HelpPage />
+            </Route>
+            <Route path="/stores/:code">
+              <StorePage />
             </Route>
             <Route path="/">
               <MapPage />

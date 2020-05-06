@@ -17,11 +17,10 @@ import Paper from '@material-ui/core/Paper';
 import Container from '@material-ui/core/Container';
 import NaverMap from '../components/NaverMap';
 
-
-
-
 const useStyles = makeStyles((theme) => ({
-    root: {
+    root: { 
+        marginTop: theme.spacing(9),
+        marginBottom: theme.spacing(1),
     },
     mapWrapper: {
         width: "100%",
@@ -29,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
         height: '400px'
     },
     addr: {
-        margin: "1em 0",
+        margin: `${theme.spacing(1)}px 0`,
         fontWeight: "bold",
         color: "#369"
     },
@@ -81,7 +80,6 @@ const StorePage = () => {
             <div className={classes.mapWrapper}>
             <NaverMap/>
             </div>
-
             </Container>
             <BottomNav/>
         </div>

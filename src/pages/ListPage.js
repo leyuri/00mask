@@ -1,4 +1,7 @@
 import React from 'react'
+import {
+    Link,
+  } from "react-router-dom";
 import _ from "lodash";
 import { useSelector } from 'react-redux'
 
@@ -6,7 +9,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import AppBar from "../components/AppBar";
 import BottomNav from "../components/BottomNav";
 import StoreHelper from "../util/StoreHelper";
-
 
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -33,7 +35,11 @@ const StoreItem = ({store}) => {
     const { color, desc } = StoreHelper(store);
     // 이것들을 store에서 뽑으면 됨
     return (
-    <ListItem>
+    <ListItem
+        button = {true}
+        component = {Link}
+        to={`/stores/${store.code}`}
+    >
         <ListItemAvatar>
           {/* <Avatar> */}
             <StoreIcon style={{color}}/>

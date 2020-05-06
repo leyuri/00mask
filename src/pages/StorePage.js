@@ -4,6 +4,8 @@ import BottomNav from "../components/BottomNav";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 
+
+
 const StorePage = () => {
 
     const { code } = useParams();
@@ -13,7 +15,7 @@ const StorePage = () => {
     return (
         <div>
             <AppBar/>
-            Detail: {code}
+            Detail: {store && store.name}
             <BottomNav/>
         </div>
     )

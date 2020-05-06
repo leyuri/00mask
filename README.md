@@ -25,7 +25,10 @@
 - NaverMap -> Component
 - Map - Redux 연결
 - Map에 Marker 추가 (<a href="https://www.iconfinder.com/iconsets/map-location-solid-style">iconfinder이용</a>)
-<br/>
+- 맵을 움직인 다음에 현재 중심에서 데이터를 추가로 가져오기
+- 재고 list 정렬
+- 상점 상세 페이지
+- 맵 마커에서 상세 페이지 연결
 
 ##### Tip
 
@@ -241,5 +244,7 @@ if (this.markers[store.code]) {
 <img width="595" alt="Screen Shot 2020-05-06 at 9 03 38 AM" src="https://user-images.githubusercontent.com/33794732/81127328-d627c700-8f78-11ea-81b7-3d046557e696.png">
 
 - 새로 패치를 해와야 할 필요가 있는데 패치가 안된거고 stores나 그런 것들이 바뀌었을 때 그거에 대해서 반응을 안하고 있다. 렌더에게다 이것을 넣기 보다는...
+
+- 현재의 center에서 새로 데이터를 가져오는 것을 만들자
 
 ##### error

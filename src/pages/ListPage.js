@@ -1,4 +1,5 @@
 import React from 'react'
+import _ from "lodash";
 import { useSelector } from 'react-redux'
 
 import { makeStyles } from '@material-ui/core/styles';
@@ -69,7 +70,7 @@ const ListPage = () => {
             <AppBar/>
             <List className={classes.root}>
                 {/* Hooks에서 selector를  가지고 redux에 있는 것 중 어떤 것을 props로 가져오면 된다 .*/}
-                {stores.map(store => <StoreItem key={store.code} store={store}/>)}
+                {_.map(stores, store => <StoreItem key={store.code} store={store}/>)}
                 {/* 
                 const StoreItem = ({addr, name, remain_stat, stock_at}) => {
                         return (

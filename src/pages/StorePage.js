@@ -15,20 +15,28 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Container from '@material-ui/core/Container';
+import NaverMap from '../components/NaverMap';
 
 
 
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
     root: {
     },
-  
-});
-
+    mapWrapper: {
+        width: "100%",
+        marginBottom: theme.spacing(7),
+        height: '400px'
+    },
+    addr: {
+        margin: "1em 0",
+        fontWeight: "bold",
+        color: "#369"
+    },
+}));
 
 
 const StorePage = () => {
-
     const classes = useStyles();
     const { code } = useParams();
     // stores 중에 내가 원하는 스토어를 가져올 수 있어야 한다. 
@@ -46,7 +54,7 @@ const StorePage = () => {
             <Container maxWidth="sm">
             <div className={classes.root}>
             <h1>{store.name}</h1>
-            <div>{store.addr}</div>
+            <div className={classes.addr}>{store.addr}</div>
             <TableContainer component={Paper}>
                 <Table className={classes.table} aria-label="simple table">
                     <TableBody>
@@ -70,10 +78,11 @@ const StorePage = () => {
                 </Table>
                 </TableContainer>
             </div>
+            <div className={classes.mapWrapper}>
+            <NaverMap/>
+            </div>
 
             </Container>
-
-  
             <BottomNav/>
         </div>
     )

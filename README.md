@@ -240,5 +240,6 @@ if (this.markers[store.code]) {
 
 <img width="595" alt="Screen Shot 2020-05-06 at 9 03 38 AM" src="https://user-images.githubusercontent.com/33794732/81127328-d627c700-8f78-11ea-81b7-3d046557e696.png">
 
+- 새로 패치를 해와야 할 필요가 있는데 패치가 안된거고 stores나 그런 것들이 바뀌었을 때 그거에 대해서 반응을 안하고 있다. 렌더에게다 이것을 넣기 보다는...
 
 ##### error

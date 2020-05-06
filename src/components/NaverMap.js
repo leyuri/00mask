@@ -29,13 +29,34 @@ class NaverMap extends React.Component {
         // marker를 key-value 형태로 넣어놓는다.
       }
 
+    
+    shouldComponentUpdate(nextProps, nextState) {
+        console.log("SHOULD UPDATE", nextProps, this.props);
+        // 이전 스테이트..비교해보고 바꾸ㅓ야 할때 바꿀 수 있다.
+        if (!this.map){
+            return true;
+        }
+
+        // 근데 map이 있을 때는 새로 그릴 필요가 없다. 렌더를 짤 필요가 없다. 
+        if (this.props.zoom !== nextProps.mapZoom ||
+            // zoom이 바뀌었을 경우
+            this.props.stores !== nextProps.stores ) {
+                // stores가 바뀌었을 경우
+                console.log("LOAD PINS")
+                this.loadPins(nextProps.stores);
+            // 이미 render은 되었고 map만 강제로 바꿔주는 거니까! 렌더를 시켜주지 않음
+            // 원래 loadPins만 호출했는데, 변경되지 않음 왜? 여태까지 this.props.stores를 호출했기 때문에..강제로 nextProps.stores를 설정해줌
+        }
+        return false;
+    }
+
     /*
     Accessing Refs
     When a ref is passed to an element in render, a reference to the node becomes 
     accessible at the current attribute of the ref.
     */
 
-    loadPins() {
+    loadPins(stores) {
         const icons = [
             pinBlack, pinGrey, pinRed, pinYellow, pinGreen, pinBlack
         ];
@@ -45,7 +66,7 @@ class NaverMap extends React.Component {
         // 현재 map의 bound를 찾고
         // hasLatLng(latlng) 객체의 좌표 경계 내에 지정한 좌표가 있는지 여부를 확인
         // 일단 getBounds를 받으면
-        _.each(this.props.stores, store => {
+        _.each(stores, store => {
             // this.props.stores.forEach(store => {
             // storer가 더이상 배열이 아니기 때문에 forEach 이 부분을 고쳐야 한다. 
             // object에 대해서도 순회할 수 있는 방법이 있는데 그건 loadash를 쓰는게 좋다. 
@@ -104,12 +125,11 @@ class NaverMap extends React.Component {
         // unMount 되었다가 다시 render가 되서 mount된 것임..
         
         this.map = new naver.maps.Map(node, mapOptions);
-
         naver.maps.Event.addListener(this.map, 'dragend', () => {
             const coord = this.map.getCenter();
             dispatch(setMapCenter([coord.lat(), coord.lng()]));
             // 이것을 어디로 보내야 할까?...mapCenter을 하도록 바꿔줘야 함 -> action을 만들자 ㅜ
-            this.loadPins();
+            this.loadPins(this.props.stores);
             // dragend가 되었을 때 다시 loadPins 해줘야 할 필요가 있다. 그 안에 핀들을 다시 불러내주도록!
         });
 
@@ -123,11 +143,12 @@ class NaverMap extends React.Component {
 
 
     render() {
-        console.log("RENDER~~~~~~~", this.props.stores)
+        // console.log("RENDER~~~~~~~", this.props.stores)
 
-        if (this.map) {
-            this.loadPins();
-        }
+        // if (this.map) {
+             // mount되어서 map이 초기화 된 상태
+        //     this.loadPins();
+        // }
         return (
             <MapDiv ref={this.mapRef}/>
             /* 이렇게 id를 주면 컴포넌트들로서의 역할을 할 수 없다. 

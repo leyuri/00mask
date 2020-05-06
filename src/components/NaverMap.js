@@ -38,7 +38,7 @@ class NaverMap extends React.Component {
         }
 
         // 근데 map이 있을 때는 새로 그릴 필요가 없다. 렌더를 짤 필요가 없다. 
-        if (this.props.zoom !== nextProps.mapZoom ||
+        if (this.props.zoom !== nextProps.zoom ||
             // zoom이 바뀌었을 경우
             this.props.stores !== nextProps.stores ) {
                 // stores가 바뀌었을 경우
@@ -61,8 +61,21 @@ class NaverMap extends React.Component {
             pinBlack, pinGrey, pinRed, pinYellow, pinGreen, pinBlack
         ];
         // 더 간결한 코드를 위해...
-
+        const { pinned } = this.props;
         var bounds = this.map.getBounds();
+        if (this.pinMarker) {
+            this.pinMarker.setMap(null);
+            this.pinMarker = null;
+          }
+
+        if (pinned && bounds.hasLatLng({ lat: pinned[0], lng: pinned[1]})) {
+            this.pinMarker = new naver.maps.Marker({
+              position: new naver.maps.LatLng(...pinned),
+              map: this.map,
+              zIndex: 10,
+              // 제일 위로 올라와 있어야 하므로 
+            });
+          }
         // 현재 map의 bound를 찾고
         // hasLatLng(latlng) 객체의 좌표 경계 내에 지정한 좌표가 있는지 여부를 확인
         // 일단 getBounds를 받으면
@@ -113,13 +126,13 @@ class NaverMap extends React.Component {
     //     });
     // }
     componentDidMount() {
-        const { mapCenter, dispatch} = this.props;
+        const { center, zoom } = this.props;
         const node = this.mapRef.current;
         var mapOptions = {
-            center: new naver.maps.LatLng(...mapCenter),
+            center: new naver.maps.LatLng(...center),
             // redux를 통해 해보자..! -> mapStateToProps 이용
             // center: new naver.maps.LatLng(this.props.center) 이런 식(배열)으로 넣으면 안된다. 쪼개서 넣어야 한다. 
-            zoom: this.props.mapZoom,
+            zoom: zoom,
             scaleControl: true,
             mapTypeControl: true,
             zoomControl: true
@@ -130,14 +143,14 @@ class NaverMap extends React.Component {
         this.map = new naver.maps.Map(node, mapOptions);
         naver.maps.Event.addListener(this.map, 'dragend', () => {
             const coord = this.map.getCenter();
-            dispatch(setMapCenter([coord.lat(), coord.lng()]));
+            this.props.onChangeCenter && this.props.onChangeCenter([coord.lat(), coord.lng()]);
             // 이것을 어디로 보내야 할까?...mapCenter을 하도록 바꿔줘야 함 -> action을 만들자 ㅜ
             this.loadPins(this.props.stores);
             // dragend가 되었을 때 다시 loadPins 해줘야 할 필요가 있다. 그 안에 핀들을 다시 불러내주도록!
         });
 
         naver.maps.Event.addListener(this.map, 'zoom_changed', zoom => {
-            dispatch(setMapZoom(zoom));
+            this.props.onChangeZoom && this.props.onChangeZoom(zoom);
         });
 
         this.loadPins();
@@ -163,20 +176,25 @@ class NaverMap extends React.Component {
 
 }
 
-function mapStateToProps(state) {
-    const { mapCenter, mapZoom, stores } = state
-    // center라는 변수에다가 state.center을 집어넣으라는 의미
-    // state 중에서 center을 받아올 것
-    return { mapCenter, mapZoom, stores }
-    // 이것을 다시 center에다가 넣어주면?
-    // center(key) : center(const { center } = state의 value)
-    // return { center : center} = return { center }
+export default NaverMap;
 
-    // mapZoom 추가..줌된 모습을 기억하기 위해서ㅜ
-    // stores추가..여기 있는 데이터도 가져오기 위해서ㅜㅜ
-  }
+
+
+
+// function mapStateToProps(state) {
+//     const { mapCenter, mapZoom, stores } = state
+//     // center라는 변수에다가 state.center을 집어넣으라는 의미
+//     // state 중에서 center을 받아올 것
+//     return { mapCenter, mapZoom, stores }
+//     // 이것을 다시 center에다가 넣어주면?
+//     // center(key) : center(const { center } = state의 value)
+//     // return { center : center} = return { center }
+
+//     // mapZoom 추가..줌된 모습을 기억하기 위해서ㅜ
+//     // stores추가..여기 있는 데이터도 가져오기 위해서ㅜㅜ
+//   }
   
-export default connect(mapStateToProps)(NaverMap)
+// export default connect(mapStateToProps)(NaverMap)
 
 
 

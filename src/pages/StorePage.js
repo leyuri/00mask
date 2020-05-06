@@ -41,6 +41,7 @@ const StorePage = () => {
     // stores 중에 내가 원하는 스토어를 가져올 수 있어야 한다. 
 
     const store = useSelector(state => state.stores[code]);
+    const stores = useSelector(state => state.stores);
     if (!store) {
         return (<div>Loading</div>);
     }
@@ -78,7 +79,12 @@ const StorePage = () => {
                 </TableContainer>
             </div>
             <div className={classes.mapWrapper}>
-            <NaverMap/>
+            <NaverMap 
+                stores={stores} 
+                center={[store.lat, store.lng]}
+                zoom={17}
+                pinned={[store.lat, store.lng]}
+            />
             </div>
             </Container>
             <BottomNav/>

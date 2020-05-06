@@ -251,4 +251,6 @@ if (this.markers[store.code]) {
 - 패치를 안했기 때문에 stores에 아무것도 없음
 <img width="1157" alt="Screen Shot 2020-05-06 at 1 52 56 PM" src="https://user-images.githubusercontent.com/33794732/81139522-fff4e400-8fa0-11ea-8047-307130ae8ff2.png">
 
+- store를 직접 넣어주려고 한다. 스토오와 useSelector연결 하는 부분 빼주고ㅠ
+
 ##### error

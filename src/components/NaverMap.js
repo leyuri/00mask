@@ -2,6 +2,7 @@
 
 import React from  "react";
 import _ from "lodash";
+import { withRouter } from "react-router";
 
 import { styled } from '@material-ui/core/styles';
 import { connect } from 'react-redux'
@@ -96,6 +97,7 @@ class NaverMap extends React.Component {
                     // reducer 에서 살표보자..lat, lng 있네.? 가져옴
                 
                 map: this.map,
+                clickable: true,
                 zIndex: idx === 5 ? 0 : idx,
                 // 조건문 ? 선택문1 : 선택문2
                 icon: {
@@ -107,24 +109,15 @@ class NaverMap extends React.Component {
                     anchor: new naver.maps.Point(11, 35)
                 }
             });
-            // 이렇게 만들어진 마커를 가지고 있어야 한다? ->
-            this.markers[store.code] = marker;
-            // store의 code가 marker 역할을 하므로 넣어놓는 것이다. 
-           } else {
-            // 좌표가 없으면 지우면 된다. 
-           }
+            naver.maps.Event.addListener(marker, 'click', () => {
+                this.props.history.push(`/stores/${store.code}`)
+              });
+              this.markers[store.code] = marker;
+            }
+          });
+        }
 
-        })
 
-    }
-
-    // showStores(map) {
-    // // stores의 lat & lng 마커로 다 찍어보자
-    //     var marker = new naver.maps.Marker({
-    //         position: new naver.maps.LatLng(37.3595704, 127.105399),
-    //         map: map
-    //     });
-    // }
     componentDidMount() {
         const { center, zoom } = this.props;
         const node = this.mapRef.current;
@@ -176,8 +169,8 @@ class NaverMap extends React.Component {
 
 }
 
-export default NaverMap;
-
+export default withRouter(NaverMap);
+// 이걸 감싸면 this.props의 history를 넣은 것 같은..
 
 
 

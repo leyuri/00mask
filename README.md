@@ -253,4 +253,5 @@ if (this.markers[store.code]) {
 
 - store를 직접 넣어주려고 한다. 스토오와 useSelector연결 하는 부분 빼주고ㅠ
 
+- <a href="https://reacttraining.com/react-router/web/api/withRouter">withRouter</a>
 ##### error

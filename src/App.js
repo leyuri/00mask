@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   BrowserRouter as Router,
   Switch,
   Route,
 } from "react-router-dom";
+import { fetchStoresByGeo } from "./actions";
+import { useSelector, useDispatch } from "react-redux";
+
 
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -24,6 +27,14 @@ const useStyles = makeStyles((theme) => ({
 
 function App() {
   const classes = useStyles();
+  const dispatch = useDispatch();
+  const center = useSelector(state => state.center);
+  // center을 알고 있는 게 더 나을 것 같아서 , 현재 마지막 패치된 center 을 가지고 있는 것으로
+  //  react hook
+  useEffect(() => {
+  // 컴포넌트가 마운트 되면 할 수 있는 것
+      dispatch(fetchStoresByGeo(...center, 5000));
+  })
   return (
     <Router>
       <div className={classes.app}>

@@ -223,4 +223,22 @@ if (this.markers[store.code]) {
 ```
 이 부분을 추가해주면서 해결
 
+- stores가 변경 됬는데 왜 아무것도 화면에 나타나지 않을까?...stores가 변하면 렌더가 될 것이다. 근데 렌더가 된 이후 아무것도 변하지 않음
+```
+    render() {
+        console.log("RENDER~~~~~~~")
+        return (
+            <MapDiv ref={this.mapRef}/>
+            /* 이렇게 id를 주면 컴포넌트들로서의 역할을 할 수 없다. 
+            리액트의 refs를 사용하는 방식으로!
+            */
+
+        )
+    }
+```
+<img width="583" alt="Screen Shot 2020-05-06 at 9 03 32 AM" src="https://user-images.githubusercontent.com/33794732/81127319-d1fba980-8f78-11ea-8d53-b8014b2d4496.png">
+
+<img width="595" alt="Screen Shot 2020-05-06 at 9 03 38 AM" src="https://user-images.githubusercontent.com/33794732/81127328-d627c700-8f78-11ea-81b7-3d046557e696.png">
+
+
 ##### error

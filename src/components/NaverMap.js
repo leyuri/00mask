@@ -123,7 +123,11 @@ class NaverMap extends React.Component {
 
 
     render() {
-        console.log("RENDER~~~~~~~")
+        console.log("RENDER~~~~~~~", this.props.stores)
+
+        if (this.map) {
+            this.loadPins();
+        }
         return (
             <MapDiv ref={this.mapRef}/>
             /* 이렇게 id를 주면 컴포넌트들로서의 역할을 할 수 없다. 

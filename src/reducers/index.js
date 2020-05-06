@@ -5,6 +5,7 @@ const baseState = {
     loading: false,
     error:"",
     mapCenter: [37.6050705, 127.0768575],
+    center: [37.6050705, 127.0768575],
     mapZoom: 14,
     stores: { },
 

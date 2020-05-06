@@ -31,7 +31,7 @@ class NaverMap extends React.Component {
 
     
     shouldComponentUpdate(nextProps, nextState) {
-        console.log("SHOULD UPDATE", nextProps, this.props);
+        console.log("SHOULD UPDATE", nextProps, this.props, this.map);
         // 이전 스테이트..비교해보고 바꾸ㅓ야 할때 바꿀 수 있다.
         if (!this.map){
             return true;
@@ -153,7 +153,7 @@ class NaverMap extends React.Component {
             this.props.onChangeZoom && this.props.onChangeZoom(zoom);
         });
 
-        this.loadPins();
+        this.loadPins(this.props.stores);
         console.log("MAP INITIALIZED~~~~~~~")
     }
 

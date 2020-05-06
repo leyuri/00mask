@@ -27,7 +27,7 @@ const MapPage = () => {
             <AppBar/>
                 <div className={classes.mapWrapperot}>
                     <NaverMap 
-                        store={stores} 
+                        stores={stores} 
                         center={mapCenter} 
                         zoom={mapZoom}
                         onChangeCenter={center => {

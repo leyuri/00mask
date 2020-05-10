@@ -1,6 +1,6 @@
 # 00mask
 
-### development environment
+### Development environment
 - Material UI
 - Immer
 - Redux
@@ -13,9 +13,17 @@
 - <a href="https://www.data.go.kr/data/15058203/openapi.do">공적 마스크 재고API</a>
 - <a href="https://www.ncloud.com/product/applicationService/maps">NaverMapAPI</a>
 
----
+### Features
+- Check where masks are sold on the map
+- Check the details of where masks are sold
 
-##### todo
+### Screenshot
+![ezgif com-optimize (1)](https://user-images.githubusercontent.com/33794732/81492232-4d3ec180-92d1-11ea-95a7-272137c8bd52.gif)
+![2020-05-10 15 10 06](https://user-images.githubusercontent.com/33794732/81492152-8a568400-92d0-11ea-8105-099361030c24.gif)
+
+
+
+##### Todo
 
 - Reducer / Redux / React-Redux / Redux-thunk / Redux-logger  store를 provider에
 - React-Router 통해 Page Switch

@@ -18,8 +18,9 @@
 - Check the details of where masks are sold
 
 ### Screenshot
-![2020-05-10 15 19 51](https://user-images.githubusercontent.com/33794732/81492355-d7872580-92d1-11ea-8448-8cf8eb88542a.gif)
-![2020-05-10 15 20 10](https://user-images.githubusercontent.com/33794732/81492360-e077f700-92d1-11ea-92e5-a2b2b4c6d45a.gif)
+| ![2020-05-10 15 19 51](https://user-images.githubusercontent.com/33794732/81492355-d7872580-92d1-11ea-8448-8cf8eb88542a.gif)  | ![2020-05-10 15 20 10](https://user-images.githubusercontent.com/33794732/81492360-e077f700-92d1-11ea-92e5-a2b2b4c6d45a.gif)|  
+|---|:---:|
+
 
 ##### Todo
 
